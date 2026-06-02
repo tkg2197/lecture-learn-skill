@@ -24,7 +24,8 @@ Use this skill for pagewise coverage. If the user wants an overall storyline wit
 
 ## Core Output Contract
 
-- Output directly in chat by default; do not create `.docx`, `.md`, screenshots, or other files unless the user explicitly asks.
+- Output directly in chat by default; do not create `.docx`, `.md`, or other output files unless the user explicitly asks.
+- Reference the original slide content when it helps the learner: quote the original text or notation, and insert a screenshot of the page or region when the explanation depends on a visual element such as a diagram, figure, chart, table, or hard-to-transcribe formula (see "Referencing Original Content").
 - Cover every requested page. If a page is visually or textually identical to an earlier page, mention it briefly rather than silently skipping it.
 - For English content, translate it into natural and accurate Chinese. For Chinese content, keep the original Chinese sentence instead of paraphrasing it as if it were translated.
 - For mixed-language content, translate English parts and preserve Chinese parts.
@@ -36,6 +37,16 @@ Use this skill for pagewise coverage. If the user wants an overall storyline wit
 - For pages without new knowledge points, such as pure title pages, table-of-contents pages, blank pages, exact duplicates, or transition-only animation frames, a short note is enough.
 - For derivations and proofs, explain the reasoning path first: why this route is used, what each important step is trying to show, and which definition, theorem, or inequality justifies the step. Keep only the necessary equations; avoid long uninterrupted blocks of pure mathematical manipulation.
 - If exercises appear, follow the user's current request about whether and where to solve them. The skill should not impose a fixed placement for exercise solutions.
+
+## Referencing Original Content
+
+Anchor the explanation to the actual slide instead of only paraphrasing it.
+
+- **Quote text** when wording matters: definitions, theorem statements, exact notation, or a key sentence. Show the original (and its Chinese translation when it is English), then explain it.
+- **Insert a screenshot** when the explanation depends on something visual that text cannot faithfully reproduce: a diagram, figure, chart, table, geometric drawing, annotated arrows/highlights, or a complex formula that is hard to transcribe. Crop to the relevant region when possible rather than always pasting the whole page.
+- Place the quote or screenshot right where it is discussed, so the reference sits next to the explanation it supports.
+- Keep references purposeful: cite the original only when it aids understanding, not for every page. Do not screenshot pure text that is already fully transcribed.
+- This is the one case where producing screenshots is expected by default; you do not need to ask the user first. Still avoid creating other output files unless requested.
 
 ## Workflow
 
@@ -51,7 +62,7 @@ Use this skill for pagewise coverage. If the user wants an overall storyline wit
    - all formulas, notation, diagrams, examples, and exercise prompts;
    - what is new versus repeated from earlier pages;
    - whether a proof, derivation, or calculation needs explanation.
-6. Write the response in page order using concise but complete teaching sections. Explain repeated ideas by reference and focus on what changed.
+6. Write the response in page order using concise but complete teaching sections. Explain repeated ideas by reference and focus on what changed. Where the explanation depends on a visual element or exact wording, quote the original text or insert a screenshot of the relevant page or region next to that explanation.
 7. Before finishing, verify page coverage, formula coverage, language handling, repeated-content compression, and absence of unexplained notation or mojibake.
 
 ## Recommended Page Format
@@ -65,6 +76,9 @@ Use this structure unless the user requests another format:
 
 **翻译 / 原文：**
 翻译英文内容；中文原句保持原样。
+
+**原文引用 / 截图：**
+仅在需要时使用。引用值得逐字保留的原文（定义、定理、关键符号），或当讲解依赖图示、图表、表格、几何图、复杂公式等视觉内容时，在此处插入对应页面或局部区域的截图。
 
 **知识点与公式：**
 逐条解释本页所有知识点、公式、符号和图示。核心内容讲清楚，辅助内容简明说明。
@@ -99,7 +113,7 @@ For animation-progressive pages:
 - **Exercises and calculations:** If solving is requested, first identify the relevant definition or theorem, then list the given data, explain the method, and compute the result. Keep the solution understandable rather than purely symbolic.
 - **Notation:** Define symbols before relying on them heavily. Preserve original variable names and mathematical notation.
 - **Examples:** Explain what the example is demonstrating. Compute or narrate intermediate states when they are needed to understand the example.
-- **Diagrams:** Describe the visual structure and connect it to the concept being taught. Do not ignore arrows, highlights, labels, tables, or annotations that affect meaning.
+- **Diagrams:** Describe the visual structure and connect it to the concept being taught. Do not ignore arrows, highlights, labels, tables, or annotations that affect meaning. When the explanation relies on the figure itself, insert a screenshot of it so the learner can see what is being described.
 - **Difficulty control:** If a page contains many items, group related points so the explanation stays readable. If a page contains only one simple fact, keep it short but still clear.
 - **Common mistakes:** Add a short caution when a condition, inequality direction, approximation, probability statement, or notation is easy to misread.
 
@@ -127,4 +141,5 @@ For animation-progressive pages:
 - Important points are explained clearly enough to understand, while repeated or auxiliary details are compressed.
 - Proofs and derivations are idea-centered, with necessary equations but no long uninterrupted formula dump.
 - Mathematical notation is readable and every important symbol is explained.
+- Where the explanation depends on visual or exact-wording content, the original is referenced via a quote or a screenshot placed next to the relevant explanation.
 - The answer is directly in chat unless the user explicitly requested a file.
