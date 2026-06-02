@@ -104,7 +104,3 @@ LICENSE                  MIT License
 .gitignore               常规本地文件忽略规则
 ```
 
-## 许可证
-
-MIT License。
-# lecture-learn-skill
