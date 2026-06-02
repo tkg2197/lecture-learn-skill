@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lecture Pagewise Explainer"
+  short_description: "Explain lecture PDFs page by page with matching content."
+  default_prompt: "Use $lecture-pagewise-explainer to translate and explain this teaching slide PDF page by page."
